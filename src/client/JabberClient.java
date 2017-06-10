@@ -24,7 +24,7 @@ public class JabberClient {
 			for(int i=0;i<10;i++){
 				out.println("hello:"+i);
 				String str=in.readLine();
-//				System.out.println(str);
+				System.out.println(str);
 			}
 			out.println("END");
 			out.flush();

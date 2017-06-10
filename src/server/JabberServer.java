@@ -16,22 +16,24 @@ public class JabberServer {
 		ServerSocket serverSocket=new ServerSocket(PORT);
 		Socket socket=null;
 		try {
-			
+			BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/Users/tiankui/Downloads/BrowserDownload/log.txt")));
 			System.out.println("Started:"+serverSocket);
+			out.write("started:"+serverSocket+"\n");
 			socket=serverSocket.accept();
 			try{
+				
 				System.out.println("connection accepted"+socket);
+				out.write("connection accepted:"+socket+"\n");
 				BufferedReader in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				
 				PrintWriter printWriter=new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),true);
-				BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/Users/tiankui/Downloads/BrowserDownload/log.txt")));
+				
 				while(true){
 					String str=in.readLine();
 					if(str.equals("END")){
 						break;
 					}
-					System.out.println("echo:"+str);
-					out.write(str);
+					out.write(str+"\n");
 					printWriter.println(str);
 				}
 				out.flush();
